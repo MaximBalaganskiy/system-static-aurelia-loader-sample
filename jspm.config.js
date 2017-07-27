@@ -321,6 +321,7 @@ SystemJS.config({
         "aurelia-templating-router": "npm:aurelia-templating-router@1.1.0",
         "css": "github:systemjs/plugin-css@0.1.35",
         "fetch": "github:github/fetch@2.0.3",
+        "jquery": "npm:jquery@3.2.1",
         "materialize": "github:Dogfalo/materialize@0.100.1",
         "numeral": "npm:numeral@2.0.6",
         "process": "npm:jspm-nodelibs-process@0.2.1",

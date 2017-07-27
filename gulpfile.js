@@ -47,7 +47,7 @@ function getOutFileName(source, fileName) {
 }
 
 gulp.task("del", function () {
-	return del([distPath + "*.js", paths.root + "**/*.js"]);
+	return del([distPath + "build*.js", paths.root + "**/*.js"]);
 });
 
 var tsProjectCJS = ts.createProject("./tsconfig.json", {
@@ -89,7 +89,7 @@ gulp.task("build", ["build-commonjs"], function () {
 		}) // !!! `encodeNames: false` is very important
 		.then(content => {
 			var fileName = getOutFileName(content.source, "build.js");
-			if (!fs.exists(distPath)) {
+			if (!fs.existsSync(distPath)) {
 				fs.mkdir(distPath);
 			}
 			fs.writeFileSync(distPath + fileName, content.source);
@@ -132,4 +132,13 @@ gulp.task("build", ["build-commonjs"], function () {
 				}))
 				.pipe(gulp.dest(root));
 		});
+});
+
+gulp.task("unbundle", function () {
+	return gulp
+		.src(root + "index.html")
+		.pipe(htmlReplace({
+			js: ["jspm_packages/system.js", "jspm.config.js", "<script>System.import('aurelia-bootstrapper');</script>"],
+		}, { keepBlockTags: true, keepUnassigned: true }))
+		.pipe(gulp.dest(root));
 });
