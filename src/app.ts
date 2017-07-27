@@ -6,7 +6,7 @@ export class App {
     public configureRouter(config: RouterConfiguration, router: Router) {
         config.title = 'Aurelia';
         config.map([
-            { route: ['', 'welcome'], name: 'welcome', moduleId: './routes/welcome', nav: true, title: 'SystemJs Static Aurelia Seed' },
+            { route: ['', 'welcome'], name: 'welcome', moduleId: './routes/welcome', nav: true, title: 'SystemJS Static Aurelia Seed' },
             { route: 'aurelia-materialize-bridge', name: 'mat-bridge', moduleId: './routes/mat-bridge', nav: true, title: 'Materialize-Bridge' },
             { route: 'aurelia-kendoui-bridge', name: 'kendo-bridge', moduleId: './routes/kendo-bridge', nav: true, title: 'KendoUi-Bridge' }
         ]);

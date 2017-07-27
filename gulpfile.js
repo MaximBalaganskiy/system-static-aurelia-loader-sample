@@ -1,14 +1,14 @@
 var gulp = require("gulp");
-var Builder = require('systemjs-builder');
+var Builder = require("systemjs-builder");
 var revPath = require("rev-path");
 var revHash = require("rev-hash");
 var fs = require("fs");
 var htmlReplace = require("gulp-html-replace");
 var del = require("del");
-var ts = require('gulp-typescript');
-var plumber = require('gulp-plumber');
-var merge = require('merge2');
-var runSequence = require('run-sequence');
+var ts = require("gulp-typescript");
+var plumber = require("gulp-plumber");
+var merge = require("merge2");
+var runSequence = require("run-sequence");
 
 var root = "./";
 var distFolder = "dist/";
@@ -43,29 +43,29 @@ var bundle = [
 ];
 
 function getOutFileName(source, fileName) {
-	return revPath(fileName, revHash(new Buffer(source, 'utf-8')));
+	return revPath(fileName, revHash(new Buffer(source, "utf-8")));
 }
 
 gulp.task("del", function () {
 	return del([distPath + "*.js", paths.root + "**/*.js"]);
 });
 
-var tsProjectCJS = ts.createProject('./tsconfig.json', {
-	typescript: require('typescript'),
+var tsProjectCJS = ts.createProject("./tsconfig.json", {
+	typescript: require("typescript"),
 	"declaration": true,
-	target: 'es5',
-	module: 'commonjs'
+	target: "es5",
+	module: "commonjs"
 });
 
 var srcRoot = "src/";
 
 var paths = {
 	root: srcRoot,
-	source: srcRoot + '**/*.ts',
+	source: srcRoot + "**/*.ts",
 	output: srcRoot,
 	dtsSrc: [
-		'./typings/**/*.d.ts',
-		'./custom_typings/**/*.d.ts'
+		"./typings/**/*.d.ts",
+		"./custom_typings/**/*.d.ts"
 	]
 };
 
