@@ -16,6 +16,7 @@ var distPath = root + distFolder;
 var builder = new Builder(root, root + "jspm.config.js");
 
 var bundle = [
+	"src/bootstrap.js", // !!!!!!!!!!! important to have this in a first line
 	"aurelia-bootstrapper",
 	"aurelia-pal-browser",
 	"aurelia-loader",
