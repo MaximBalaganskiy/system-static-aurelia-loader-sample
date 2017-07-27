@@ -1,0 +1,17 @@
+{
+	"main": "dist/js/materialize",
+	"format": "global",
+	"dependencies": {
+		"jquery": "jspm:jquery@*",
+		"css": "jspm:css@*"
+	},
+	"meta": {
+		"dist/js/materialize.js": {
+			"deps": [
+				"jquery",
+				"../css/materialize.css!"
+			],
+			"format": "global"
+		}
+	}
+}
