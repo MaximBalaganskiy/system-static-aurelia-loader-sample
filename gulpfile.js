@@ -89,6 +89,9 @@ gulp.task("build", ["build-commonjs"], function () {
 		}) // !!! `encodeNames: false` is very important
 		.then(content => {
 			var fileName = getOutFileName(content.source, "build.js");
+			if (!fs.exists(distPath)) {
+				fs.mkdir(distPath);
+			}
 			fs.writeFileSync(distPath + fileName, content.source);
 			var map = {};
 			var unknown = [];
