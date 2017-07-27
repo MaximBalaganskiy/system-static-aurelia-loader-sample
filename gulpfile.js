@@ -16,7 +16,7 @@ var distPath = root + distFolder;
 var builder = new Builder(root, root + "jspm.config.js");
 
 var bundle = [
-	"src/bootstrap.js", // !!!!!!!!!!! important to have this in a first line
+	"src/bootstrap.ts", // !!!!!!!!!!! important to have this in a first line
 	"aurelia-bootstrapper",
 	"aurelia-pal-browser",
 	"aurelia-loader",
@@ -38,7 +38,7 @@ var bundle = [
 	"aurelia-materialize-bridge/**/*.html!text",
 	"aurelia-materialize-bridge/**/*.js",
 	"aurelia-materialize-bridge/**/*.css!text",
-	"src/**/*.js",
+	"src/**/*.ts",
 	"src/**/*.html!text",
 	"src/**/*.css!text"
 ];
@@ -81,12 +81,13 @@ gulp.task("build-commonjs", ["del"], function () {
 		.pipe(gulp.dest(paths.output));
 });
 
-gulp.task("build", ["build-commonjs"], function () {
+gulp.task("build", ["del"], function () {
 	return builder
 		.buildStatic(bundle.join(" + "), {
 			sourceMaps: false,
 			encodeNames: false,
-			minify: true
+			minify: false,
+			format: "umd"
 		}) // !!! `encodeNames: false` is very important
 		.then(content => {
 			var fileName = getOutFileName(content.source, "build.js");
@@ -107,9 +108,9 @@ gulp.task("build", ["build-commonjs"], function () {
 					}
 				} else {
 					// match application module
-					var lm = /^([a-zA-Z-\d\/\s\.]+).(js|html|css|min.css)(!.*)?/.exec(module);
+					var lm = /^([a-zA-Z-\d\/\s\.]+).(js|ts|html|css|min.css)(!.*)?/.exec(module);
 					if (lm) {
-						map[lm[1] + (lm[2] === "js" ? "" : ("." + lm[2]))] = module;
+						map[lm[1] + (lm[2] === "js" || lm[2] === "ts" ? "" : ("." + lm[2]))] = module;
 					} else {
 						unknown.push(module);
 					}

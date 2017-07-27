@@ -280,10 +280,15 @@ SystemJS.config({
             }
         }
     },
+    transpiler: "plugin-typescript",
     packages: {
         "src": {
-            "defaultExtension": "js",
-            "main": "main.js"
+            "defaultExtension": "ts",
+            meta: {
+                "*.ts": {
+                    "loader": "plugin-typescript"
+                }
+            }
         }
     }
 });
