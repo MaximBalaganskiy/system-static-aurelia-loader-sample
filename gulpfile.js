@@ -31,6 +31,7 @@ var bundle = [
 	"aurelia-templating",
 	"aurelia-logging",
 	"aurelia-pal",
+//	"aurelia-loader-default",
 	"fetch",
 	"system-static-aurelia-loader",
 	"materialize",
